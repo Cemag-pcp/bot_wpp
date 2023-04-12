@@ -11,7 +11,6 @@ with open('credentials_twilio.json', 'r') as f:
 with open('telefones.json', 'r') as f:
     telefones = json.load(f)
           
-
 # Your Account Sid and Auth Token from twilio.com/console
 account_sid = credentials['account_sid']
 auth_token = credentials['auth_token']
@@ -84,7 +83,7 @@ def n_rows_att():
 
 interval = 30
 
-lista_cels = telefones['telefones']
+lista_cels = telefones['telefones_pessoas']
 
 while True:
     
@@ -95,7 +94,7 @@ while True:
         for mess in range(len(lista_cels)):
 
             message = client.messages.create(
-            from_='whatsapp:+14155238886',
+            from_='whatsapp:{}'.format(telefones['telefone_bot']),
             body=body,
             to='whatsapp:{}'.format(lista_cels[mess])
             )
